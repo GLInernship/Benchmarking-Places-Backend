@@ -1,4 +1,4 @@
-# Backend for Nearby Places Comparison Tool
+#  Benchmarking-Places-Backend
 
 ## Overview
 This backend application supports the Nearby Places Comparison Tool, which compares data from Google Maps API and HERE Geocoding & Reverse Geocoding API. It handles data processing, storage, and serves as an API for the frontend application.
@@ -23,12 +23,14 @@ This backend application supports the Nearby Places Comparison Tool, which compa
    - Create a `.env` file in the root directory
    - Add `MONGODB_URI=your_mongodb_connection_string`
 4. Start the server: `npm start`
+5. Will get the database in your MongoDb Compass.
 
 ## Database Structure
 Database Name: nearbyplaces
 Collections:
 - subregions: Stores subregion details
 - ranLatLons: Stores information about random latitude and longitude points and their nearby places as an array
+- center: Stores the very mid point of subregions.
 
 
 ## API Endpoints
@@ -63,4 +65,4 @@ Collections:
 - N Shikhar - nakirekanti.shikhar@globallogic.com
 - Nihal saran das duggirala - nihal.saran@globallogic.com
 
-## License
+
