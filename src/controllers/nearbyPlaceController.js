@@ -2,11 +2,12 @@ const NearbyPlace = require('../models/NearbyPlace');
 
 exports.saveNearbyPlaces = async (req, res) => {
   try {
-    const { groupedPOIs } = req.body;
+    const { groupedRLatLons, placeType } = req.body; // Add placeType here
 
     // Create a new document for this API call
     const newNearbyPlace = new NearbyPlace({
-      data: groupedPOIs
+      placeType: placeType, // Add this line
+      groupedRLatLons: groupedRLatLons
     });
 
     // Save the new document
