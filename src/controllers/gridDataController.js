@@ -2,10 +2,11 @@ const GridData = require('../models/GridData');
 
 exports.saveGridData = async (req, res) => {
   try {
-    const { gridData } = req.body;
+    const { placeName, gridData } = req.body;
     
     // Create a single document containing all the grid data
     const newDocument = {
+      placeName: placeName,
       timestamp: new Date(),
       data: gridData.map(item => ({
         subregion_id: item.subregion_id,

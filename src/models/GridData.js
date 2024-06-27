@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const GridDataSchema = new mongoose.Schema({
+  placeName: String,
   timestamp: {
     type: Date,
     default: Date.now
