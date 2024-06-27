@@ -10,7 +10,11 @@ const app = express();
 
 // Middleware to parse JSON
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:3000', // Allow only your frontend origin
+  methods: ['GET', 'POST'], // Allowed methods
+  allowedHeaders: ['Content-Type', 'Authorization'] // Allowed headers
+}));
 
 // Respond to GET request at "/"
 app.get('/', (req, res) => {
