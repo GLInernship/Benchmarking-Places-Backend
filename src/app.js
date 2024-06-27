@@ -11,7 +11,7 @@ const app = express();
 // Middleware to parse JSON
 app.use(express.json());
 app.use(cors({
-  origin: ['https://localhost:3000', 'https://j5s9dm7w-9000.inc1.devtunnels.ms'], // Allow these frontend origins // Allow only your frontend origin
+  origin: ['https://localhost:3000', 'https://glinernship.github.io'], // Allow these frontend origins // Allow only your frontend origin
   methods: ['GET', 'POST'], // Allowed methods
   allowedHeaders: ['Content-Type', 'Authorization'] // Allowed headers
 }));
