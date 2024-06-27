@@ -32,9 +32,12 @@ mongoose.connect(process.env.MONGODB_URI, {
 // Import routes
 const nearbyPlaceRoutes = require('./routes/nearbyPlaceRoutes');
 const gridDataRoutes = require('./routes/gridDataRoutes');
+const resultRoutes = require('./routes/resultRoutes');
+
 
 // Use routes
 app.use('/api', nearbyPlaceRoutes);
 app.use('/api', gridDataRoutes);
+app.use('/api', resultRoutes);
 
 module.exports = app;
