@@ -11,7 +11,11 @@ const GridDataSchema = new mongoose.Schema({
     name: String,
     lat: Number,
     lng: Number
-  }]
+  }],
+  timestamp: {
+    type: Date,
+    default: Date.now
+  }
 });
 
 module.exports = mongoose.model('GridData', GridDataSchema);

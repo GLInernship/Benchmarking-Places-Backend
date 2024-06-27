@@ -4,11 +4,17 @@ exports.saveGridData = async (req, res) => {
   try {
     const { gridData } = req.body;
     
-    // Clear existing data
-    await GridData.deleteMany({});
+    // Create an array to hold all the new documents
+    const newDocuments = gridData.map(item => ({
+      subregion_id: item.subregion_id,
+      bounds: item.bounds,
+      center: item.center,
+      ranLatLonss: item.ranLatLonss,
+      timestamp: new Date()
+    }));
     
-    // Insert new data
-    const savedData = await GridData.insertMany(gridData);
+    // Insert all new documents
+    const savedData = await GridData.insertMany(newDocuments);
     
     res.status(201).json({
       success: true,
@@ -27,7 +33,8 @@ exports.saveGridData = async (req, res) => {
 
 exports.getGridData = async (req, res) => {
   try {
-    const gridData = await GridData.find();
+    // Fetch all documents, sorted by timestamp in descending order
+    const gridData = await GridData.find().sort({ timestamp: -1 });
     res.status(200).json({
       success: true,
       data: gridData
