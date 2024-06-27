@@ -1,21 +1,16 @@
 const mongoose = require('mongoose');
 
 const GridDataSchema = new mongoose.Schema({
-  subregion_id: Number,
-  bounds: [String],
-  center: {
-    lat: Number,
-    lng: Number
-  },
-  ranLatLonss: [{
-    name: String,
-    lat: Number,
-    lng: Number
-  }],
   timestamp: {
     type: Date,
     default: Date.now
-  }
+  },
+  data: [{
+    subregion_id: String,
+    bounds: Object,
+    center: Object,
+    ranLatLonss: Object
+  }]
 });
 
 module.exports = mongoose.model('GridData', GridDataSchema);
