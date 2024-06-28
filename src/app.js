@@ -33,11 +33,13 @@ mongoose.connect(process.env.MONGODB_URI, {
 const nearbyPlaceRoutes = require('./routes/nearbyPlaceRoutes');
 const gridDataRoutes = require('./routes/gridDataRoutes');
 const resultRoutes = require('./routes/resultRoutes');
+const googlePlaceRoutes = require('./routes/googlePlaceRoutes');
 
 
 // Use routes
 app.use('/api', nearbyPlaceRoutes);
 app.use('/api', gridDataRoutes);
 app.use('/api', resultRoutes);
+app.use('/api', googlePlaceRoutes);
 
 module.exports = app;
