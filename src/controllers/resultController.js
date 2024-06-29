@@ -3,14 +3,24 @@ const Result = require('../models/Result');
 exports.saveResults = async (req, res) => {
   try {
     let results = req.body.results;
-    // Preprocess results to ensure matchesGoogle is a Boolean
+    // Preprocess results to ensure matchesGoogle, neededStreetSimilary, and neededDistanceMatch are Booleans
     results = results.map(result => {
       if (result.hereBasedOnGoogle) {
         result.hereBasedOnGoogle = result.hereBasedOnGoogle.map(subResult => {
           // Add a check to ensure subResult is not null
-          if (subResult && subResult.matchesGoogle !== undefined) {
+          if (subResult) {
             // Convert matchesGoogle to Boolean if it's not already
-            subResult.matchesGoogle = subResult.matchesGoogle === 'true' || subResult.matchesGoogle === true;
+            if (subResult.matches !== undefined) {
+              subResult.matches = subResult.matches === 'true' || subResult.matches === true;
+            }
+            // Convert neededStreetSimilary to Boolean if it's not already
+            if (subResult.neededStreetSimilary !== undefined) {
+              subResult.neededStreetSimilary = subResult.neededStreetSimilary === 'true' || subResult.neededStreetSimilary === true;
+            }
+            // Convert neededDistanceMatch to Boolean if it's not already
+            if (subResult.neededDistanceMatch !== undefined) {
+              subResult.neededDistanceMatch = subResult.neededDistanceMatch === 'true' || subResult.neededDistanceMatch === true;
+            }
           }
           return subResult;
         });
