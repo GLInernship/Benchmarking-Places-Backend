@@ -4,12 +4,15 @@ const placeTypeSchema = new mongoose.Schema({
   label: String,
   googleValue: String,
   hereValue: String,
-  placeName: String,
+  
 });
 
 const nearbyPlaceSchema = new mongoose.Schema({
   timestamp: { type: Date, default: Date.now },
   placeType: placeTypeSchema, // Add this line
+  placeName: String,
+  searchRadius: String,
+  resultLimit: String,
   groupedRLatLons: [{
     subregion_id: Number,
     center: {
