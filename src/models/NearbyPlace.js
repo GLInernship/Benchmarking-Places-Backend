@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 const placeTypeSchema = new mongoose.Schema({
   label: String,
   googleValue: String,
-  hereValue: String
+  hereValue: String,
+  placeName: String,
 });
 
 const nearbyPlaceSchema = new mongoose.Schema({
