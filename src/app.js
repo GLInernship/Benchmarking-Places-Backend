@@ -39,6 +39,7 @@ const gridDataRoutes = require('./routes/gridDataRoutes');
 const resultRoutes = require('./routes/resultRoutes');
 const googlePlaceRoutes = require('./routes/googlePlaceRoutes');
 
+
 // Use routes
 app.use('/api', nearbyPlaceRoutes);
 app.use('/api', gridDataRoutes);
