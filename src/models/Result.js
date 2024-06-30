@@ -26,7 +26,10 @@ const ResultSchema = new mongoose.Schema({
       lng: Number,
       matchesGoogle: Boolean,
       neededStreetSimilary: Boolean,
-      neededDistanceMatch: Boolean
+      neededDistanceMatch: Boolean,
+      address: String,
+      categoryHereType: String,
+      neededNameSimilarity: Boolean,
     }],
     herePlaces: [{
       categoryType: String,
