@@ -196,7 +196,13 @@ Make sure to set up the following environment variables in your `.env` file:
 - `GOOGLE_API_KEY`: Your Google API key.
 - `MONGODB_URI`: MongoDB connection string.
 
-## Contributing
+## Contributors
+- Developed by -
+- Insha Khan - insha.khan@globallogic.com
+- Muskan Arya - muskan.arya@globallogic.com
+- Aashi Chaudhary- aashi.chaudhary@globallogic.com
+- Nihal saran das duggirala - nihal.saran@globallogic.com
+- Sajal Satsangi - sajal.satsangi@globallogic.com
+- N Shikhar - nakirekanti.shikhar@globallogic.com
 
-Contributions are welcome! Please open an issue or submit a pull request for any changes.
 
