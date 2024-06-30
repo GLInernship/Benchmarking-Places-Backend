@@ -5,21 +5,23 @@ const Place = require('../models/Result'); // Adjust the path as necessary
 exports.getAllResults = async (req, res) => {
     try {
         const results = await Place.find({}, 'placeName'); // Corrected to use a model
-        const placeImages = await Promise.all(results.map(async (result) => {
+        const placeDetails = await Promise.all(results.map(async (result) => {
             const placeName = result.placeName;
-            // Use Google Places API to search for the place by name
-            const placesResponse = await axios.get(`https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${encodeURIComponent(placeName)}&inputtype=textquery&fields=photos&key=${GOOGLE_API_KEY}`);
+            // Modified API request to include formatted_address in the fields
+            const placesResponse = await axios.get(`https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${encodeURIComponent(placeName)}&inputtype=textquery&fields=photos,formatted_address&key=${GOOGLE_API_KEY}`);
             const firstPlace = placesResponse.data.candidates[0];
-            if (firstPlace && firstPlace.photos && firstPlace.photos.length > 0) {
-                const photoReference = firstPlace.photos[0].photo_reference;
-                // Construct URL for the first photo of the place
-                const imageUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photoReference}&key=${GOOGLE_API_KEY}`;
-                return { placeName, imageUrl };
+            if (firstPlace) {
+                const photoReference = firstPlace.photos && firstPlace.photos.length > 0 ? firstPlace.photos[0].photo_reference : null;
+                // Construct URL for the first photo of the place if available
+                const imageUrl = photoReference ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photoReference}&key=${GOOGLE_API_KEY}` : null;
+                // Extract the full location name
+                const location = firstPlace.formatted_address;
+                return { placeName, imageUrl, location: location };
             } else {
-                return { placeName, imageUrl: null };
+                return { placeName, imageUrl: null, location: null };
             }
         }));
-        res.json(placeImages);
+        res.json(placeDetails);
     } catch (error) {
         res.status(500).json({ message: 'Error fetching results', error: error.message });
     }
