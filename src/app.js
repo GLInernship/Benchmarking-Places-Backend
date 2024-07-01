@@ -3,6 +3,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const morgan = require('morgan'); // Import morgan
+const bodyParser = require('body-parser');
 
 // Load environment variables from .env file
 dotenv.config();
@@ -24,6 +25,9 @@ app.use(cors({
 app.get('/', (req, res) => {
   res.send('WELCOME TO BENCHMARKING PLACES BACKEND');
 });
+
+app.use(bodyParser.json({ limit: '100mb' })); // Increase the limit to 50MB
+app.use(bodyParser.urlencoded({ limit: '100mb', extended: true, parameterLimit: 100000 }));
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB_URI, {
