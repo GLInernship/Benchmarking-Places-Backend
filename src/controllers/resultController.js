@@ -30,7 +30,7 @@ exports.saveResults = async (req, res) => {
           ['googlePlaces', 'hereBasedOnGoogle', 'herePlaces', 'googleBasedOnHere'].forEach(arrayName => {
             newResult[arrayName].forEach(newItem => {
               const existingItemIndex = existingResult[arrayName].findIndex(
-                item => item.name === newItem.name && item.lat === newItem.lat && item.lng === newItem.lng
+                item => item.index === newItem.index
               );
               if (existingItemIndex === -1) {
                 // New item, add it
@@ -43,6 +43,8 @@ exports.saveResults = async (req, res) => {
                 };
               }
             });
+            // Sort the array by index after updating
+            existingResult[arrayName].sort((a, b) => a.index - b.index);
           });
         }
       });

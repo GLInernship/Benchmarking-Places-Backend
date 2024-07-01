@@ -14,6 +14,7 @@ const ResultSchema = new mongoose.Schema({
       lng: Number
     },
     googlePlaces: [{
+      index: Number,
       types: [String],
       name: String,
       formatted_address: String,
@@ -21,17 +22,19 @@ const ResultSchema = new mongoose.Schema({
       lng: Number
     }],
     hereBasedOnGoogle: [{
+      index: Number,
       name: String,
       lat: Number,
       lng: Number,
       matchesGoogle: Boolean,
       neededStreetSimilary: Boolean,
       neededDistanceMatch: Boolean,
-      address: String,
-      categoryHereType: String,
       neededNameSimilarity: Boolean,
+      address: String,
+      categoryHereType: String
     }],
     herePlaces: [{
+      index: Number,
       categoryType: String,
       name: String,
       address: String,
@@ -39,6 +42,7 @@ const ResultSchema = new mongoose.Schema({
       lng: Number
     }],
     googleBasedOnHere: [{
+      index: Number,
       name: String,
       lat: Number,
       lng: Number
